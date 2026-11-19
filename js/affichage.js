@@ -65,12 +65,12 @@ export function afficherPanier(lignes, surAction) {
     liste.append(element);
   });
 
-  // Les boutons + , − et Supprimer de toutes les lignes.
-  liste.addEventListener("click", (evenement) => {
+  // Les boutons + , − et Supprimer de toutes les lignes (propriété réassignée pour éviter l'accumulation d'écouteurs).
+  liste.onclick = (evenement) => {
     const cible = evenement.target.closest("button[data-action]");
     if (!cible) return;
     surAction(cible.dataset.action, Number(cible.dataset.index));
-  });
+  };
 }
 
 // Crée un bouton d'action pour une ligne du panier.
