@@ -90,3 +90,6 @@ Le correctif a été appliqué dans `js/promo.js` et vérifié avec succès :
 - Saisie en minuscules avec espaces `"  noel10  "` : validée, 10 % de remise appliqués (`valide: true`).
 - Code inexistant `"FAUX"` : refusé avec `"Ce code promo n'existe pas."` (`valide: false`).
 
+Réponses roussel : 
+
+Bonjour Madame Roussel, le clavier du téléphone pouvait ajouter un espace au code promo, qui était alors refusé. La saisie a été corrigée pour accepter les espaces en trop et les minuscules. Vous pouvez réessayer avec NOEL10.

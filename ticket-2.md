@@ -89,3 +89,8 @@ Le correctif a été vérifié :
 4. Clic sur « − » : la quantité repasse exactement à 2.
 5. Clic sur « Supprimer » : l'action est déclenchée une seule fois.
 6. L'écouteur `onclick` est réassigné de façon idempotente et ne s'accumule plus.
+
+
+Réponses roussel :
+
+Bonjour, un clic sur « + » déclenchait plusieurs ajouts au panier. Ce comportement a été corrigé et vérifié. Rechargez la page, puis cliquez une fois pour ajouter un seul bouquet.

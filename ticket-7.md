@@ -117,3 +117,8 @@ Le correctif a été vérifié :
    - Ticket 4 (Deux tailles distinctes d'un même bouquet) : **PASS**.
    - Ticket 5 (Suppression ciblée sans vider le panier) : **PASS**.
    - Ticket 6 (Livraison offerte à 60,00 €) : **PASS**.
+
+
+Réponse Roussel : 
+
+Bonjour, le message de la carte était limité à 150 caractères sans que cette limite soit indiquée. Elle est maintenant expliquée et un décompte s’affiche. Veuillez raccourcir votre message à 150 caractères maximum.

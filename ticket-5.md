@@ -95,3 +95,9 @@ Le correctif a été vérifié :
    - Recalcul immédiat du sous-total, de la remise et du total dans `rafraichir()`.
    - Persistance automatique du panier mis à jour dans `localStorage` via `sauverPanier()`.
    - Les index des boutons des lignes restantes sont correctement régénérés lors du rendu DOM par `afficherPanier()`.
+
+
+
+Réponse Roussel : 
+
+Bonjour, supprimer un bouquet retirait aussi les suivants. La suppression a été corrigée pour ne concerner que la ligne choisie. Vous pouvez maintenant supprimer uniquement le bouquet voulu.

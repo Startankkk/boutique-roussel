@@ -87,6 +87,28 @@ Infirmation : L'expression renvoie `0` (grâce à `let prix = bouquet ? bouquet.
 
 ##Prompt 2 : 
 
+Applique le correctif adapté et vérifie qu'il ne crée pas de régression dans les tickets précédents.
+
 ##Cause et correctif expliqué : 
 
+### Cause
+
+Le panier de la version 1 est une liste d'articles sans numéro de version ni quantité. Il ne peut donc pas être utilisé comme un panier de la version 2 : les calculs peuvent notamment produire « NaN € ».
+
+### Correctif
+
+Le contrôle adapté est déjà présent dans `js/stockage.js` : `chargerPanier()` n'accepte que les données de version 2 contenant une liste de lignes. Pour une sauvegarde de la version 1 ou des données illisibles, il renvoie un panier vide. Au démarrage, l'affichage du panier enregistre ensuite ce panier vide au format de la version actuelle.
+
 ##Vérification : 
+
+- Une sauvegarde de version 1 est ignorée et donne un panier vide.
+- Une sauvegarde valide de version 2 conserve les lignes et le code promo.
+- Des données illisibles donnent également un panier vide.
+- Après l'initialisation, la sauvegarde de version 1 est remplacée par un panier vide au format de la version 2.
+- Contrôles ciblés des tickets précédents : code promo avec espaces et minuscules, ajout répété, données du filtre « Merci », tailles distinctes, suppression ciblée, livraison gratuite à 60 € et dates de livraison. Tous ont réussi.
+- Vérification que l'indication de limite de la carte et la sélection du créneau choisi sont toujours présentes. Ces vérifications n'étaient pas des essais complets de ces parcours.
+
+
+Réponse Roussel : 
+
+Bonjour, les paniers de l’ancienne version ne contiennent pas les informations nécessaires et pouvaient afficher des prix incorrects. Ils sont maintenant ignorés plutôt que repris. Veuillez composer un nouveau panier ; les anciens articles ne seront pas restaurés.

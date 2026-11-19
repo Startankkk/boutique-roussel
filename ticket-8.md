@@ -106,3 +106,8 @@ Le correctif a été vérifié :
    - Ticket 5 (Suppression ciblée sans vider le panier) : **PASS**.
    - Ticket 6 (Livraison offerte à 60,00 €) : **PASS**.
    - Ticket 7 (Limite carte 150 caractères et décompte dynamique) : **PASS**.
+
+
+Réponse Roussel : 
+
+Bonjour, la confirmation indiquait « matin » même lorsque « après-midi » était choisi. La sélection est maintenant correctement reprise. Choisissez votre créneau avant de commander et vérifiez-le dans la confirmation.

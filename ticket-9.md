@@ -126,3 +126,10 @@ Le correctif a été vérifié :
    - Ticket 6 (Livraison offerte à 60,00 €) : **PASS**.
    - Ticket 7 (Limite carte 150 caractères et décompte dynamique) : **PASS**.
    - Ticket 8 (Créneau après-midi préservé avec :checked) : **PASS**.
+
+
+
+Réponse Roussel : 
+
+Bonjour, les dates de livraison pouvaient être décalées, avec un dimanche proposé et un samedi manquant. L’affichage des dates a été corrigé et vérifié pour le cas signalé. Pour une commande le samedi après 14 h, choisissez parmi les jours proposés à partir du lundi.
+

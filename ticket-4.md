@@ -108,3 +108,8 @@ Le correctif a été vérifié de bout en bout :
    - Calcul des prix unitaires et sous-total : chaque ligne utilise ses propres options et suppléments sans conflit.
    - Boutons + et − : agissent indépendamment sur chaque ligne sans impacter les autres.
    - Sauvegarde dans le `localStorage` : la structure sérialisée reste identique et valide.
+
+
+Réponse Roussel : 
+
+Bonjour, le choix d’une nouvelle taille modifiait aussi le bouquet déjà ajouté. Ce problème a été corrigé. Si une ligne du panier affiche une taille incorrecte, supprimez-la puis ajoutez séparément chaque taille souhaitée.

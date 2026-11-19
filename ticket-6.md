@@ -121,3 +121,8 @@ Le correctif a été vérifié sur le cas d'usage et testé en non-régression g
    - Ticket 3 (Occasion merci pour petit-mot) : **PASS** (présent sous « Merci »).
    - Ticket 4 (Deux tailles distinctes d'un même bouquet) : **PASS** (lignes séparées et indépendantes).
    - Ticket 5 (Suppression ciblée sans vider le panier) : **PASS** (seule la ligne visée est retirée).
+
+
+Réponse Roussel : 
+
+Bonjour, un montant affiché à 60,00 € pouvait être calculé juste en dessous de ce seuil, entraînant des frais de livraison. Le calcul a été corrigé et vérifié. Vérifiez que le sous-total avant réduction atteint 60 € et que votre code postal est renseigné.

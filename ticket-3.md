@@ -84,3 +84,8 @@ Correction de la coquille de casse à la ligne 42 de `data/catalogue.json` :
    - Composition du bouquet : le clic sur « Composer » fonctionne et ouvre bien « Le petit mot » à 19,90 €.
    - Ajout au panier : ajout, calcul du prix et incrémentation sans anomalie.
    - Commande : aucune régression sur le parcours global.
+
+
+Réponses roussel :
+
+Bonjour, une différence d’écriture empêchait « Le petit mot » d’apparaître sous « Merci ». Elle a été corrigée. Vous pouvez sélectionner « Merci » pour le retrouver.
