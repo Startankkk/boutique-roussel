@@ -34,6 +34,7 @@ export function preparerComposition(optionsCatalogue, surAjout) {
   document.querySelector("#libelle-carte").textContent =
     reglesOptions.carte.libelle + " (+ " + formaterPrix(reglesOptions.carte.prix) + ")";
   document.querySelector("#message-carte").maxLength = reglesOptions.carte.longueurMax;
+  actualiserCompteurCarte();
 
   document.querySelector("#form-composition").addEventListener("change", lireFormulaire);
   document.querySelector("#message-carte").addEventListener("input", lireFormulaire);
@@ -63,6 +64,7 @@ function remplirFormulaire() {
   document.querySelector("#option-carte").checked = options.carte;
   document.querySelector("#message-carte").value = options.message;
   document.querySelector("#zone-message").hidden = !options.carte;
+  actualiserCompteurCarte();
 }
 
 // Lit le formulaire après chaque changement.
@@ -74,7 +76,24 @@ function lireFormulaire() {
   const message = document.querySelector("#message-carte").value;
   options.message = options.carte ? message.slice(0, reglesOptions.carte.longueurMax) : "";
   document.querySelector("#zone-message").hidden = !options.carte;
+  actualiserCompteurCarte();
   afficherPrixComposition();
+}
+
+// Affiche la limite et le nombre de caractères restants pour la carte.
+function actualiserCompteurCarte() {
+  const aide = document.querySelector("#aide-carte");
+  if (!aide || !reglesOptions) return;
+  const max = reglesOptions.carte.longueurMax;
+  const longueur = document.querySelector("#message-carte").value.length;
+  const restant = max - longueur;
+  if (restant <= 0) {
+    aide.textContent = "Limite de " + max + " caractères atteinte (format carte 8 × 5 cm).";
+    aide.className = "mt-1 text-sm font-bold text-roussel-rose";
+  } else {
+    aide.textContent = restant + " caractère" + (restant > 1 ? "s" : "") + " restant" + (restant > 1 ? "s" : "") + " (" + max + " max, format carte 8 × 5 cm).";
+    aide.className = "mt-1 text-sm text-roussel-gris";
+  }
 }
 
 // Affiche le prix du bouquet tel qu'il est composé.
