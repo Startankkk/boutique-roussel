@@ -15,6 +15,13 @@ export function chargerPanier() {
   if (!brut) {
     return { lignes: [], codePromo: "" };
   }
-  const donnees = JSON.parse(brut);
-  return { lignes: donnees.lignes || donnees, codePromo: donnees.codePromo || "" };
+  try {
+    const donnees = JSON.parse(brut);
+    if (!donnees || donnees.version !== VERSION || !Array.isArray(donnees.lignes)) {
+      return { lignes: [], codePromo: "" };
+    }
+    return { lignes: donnees.lignes, codePromo: donnees.codePromo || "" };
+  } catch {
+    return { lignes: [], codePromo: "" };
+  }
 }
