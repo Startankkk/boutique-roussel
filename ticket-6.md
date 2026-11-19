@@ -74,6 +74,50 @@ Infirmation : Le montant transmis provient directement de `sousTotal(lignes)`.
 
 ##Prompt 2 : 
 
+applique le correctif le plus probable selon toi et verifie si cela n'a pas créer un autre bug dans les tickets précedents
+
 ##Cause et correctif expliqué : 
 
+### Cause
+En JavaScript, les opérations sur les nombres décimaux en virgule flottante (standard IEEE 754) introduisent des micro-imprécisions de précision binaire :
+`38.9 + 8.2 + 12.9 === 59.99999999999999`.
+Alors que `formaterPrix(montant)` arrondissait visuellement la valeur affichée à `60,00 €`, `js/prix.js` renvoyait la valeur non arrondie `59.99999999999999` à `fraisLivraison()`.
+Dans `js/livraison.js#L27`, la comparaison `montant >= 60` valait donc `false`, empêchant le déclenchement de la gratuité des frais de port.
+
+### Correctif appliqué dans `js/prix.js`
+Importation et utilisation de la fonction utilitaire existante `arrondir()` de `js/outils.js` pour arrondir systématiquement les montants financiers au centime près dans `prixUnitaire()`, `prixLigne()`, `sousTotal()` et `totalCommande()` :
+```javascript
+import { arrondir } from "./outils.js";
+
+export function prixUnitaire(ligne) {
+  ...
+  return arrondir(prix);
+}
+
+export function prixLigne(ligne) {
+  return arrondir(prixUnitaire(ligne) * ligne.quantite);
+}
+
+export function sousTotal(lignes) {
+  return arrondir(lignes.reduce((total, ligne) => total + prixLigne(ligne), 0));
+}
+
+export function totalCommande(montant, remise, frais) {
+  return arrondir(montant - remise + (frais || 0));
+}
+```
+
 ##Vérification : 
+
+Le correctif a été vérifié sur le cas d'usage et testé en non-régression globale :
+1. **Scénario du ticket** :
+   - Bouquet « Blanc pur » (38,90 €), taille « Moyen » (+8,20 €), avec « Vase en verre » (+12,90 €).
+   - Sous-total calculé : exactement `60` (et non `59.99999999999999`).
+   - Code postal `37000` : `fraisLivraison(37000, 60)` renvoie `0`.
+   - Affichage : Livraison « Offerte », Total = « 60,00 € ».
+2. **Non-régression des tickets 1 à 5** :
+   - Ticket 1 (Code promo mobile & casse) : **PASS** (`NOEL10`, `NOEL10 `, `noel10`).
+   - Ticket 2 (Bouton + et écouteurs d'événements) : **PASS** (incrémentation stricte de 1 en 1).
+   - Ticket 3 (Occasion merci pour petit-mot) : **PASS** (présent sous « Merci »).
+   - Ticket 4 (Deux tailles distinctes d'un même bouquet) : **PASS** (lignes séparées et indépendantes).
+   - Ticket 5 (Suppression ciblée sans vider le panier) : **PASS** (seule la ligne visée est retirée).
